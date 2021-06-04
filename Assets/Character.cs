@@ -8,10 +8,13 @@ public class Character : MonoBehaviour
     bool isLeftButtonDown;
     public int score;
     Vector3 m;
+    Vector3 limit;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        var limit = new Vector3(1, 1, 1);
         isLeftButtonDown = false;
         isRightButtonDown = false;
         m.x = 0.0f;
@@ -37,7 +40,7 @@ public class Character : MonoBehaviour
         }
         isLeftButtonDown = Input.GetMouseButtonDown(0);
         isRightButtonDown = Input.GetMouseButtonDown(1);
-        if(isLeftButtonDown)
+        if (isLeftButtonDown)
         {
             m.y = 0.5f;
             m.x = 0.5f;
@@ -48,6 +51,10 @@ public class Character : MonoBehaviour
             m.x = 0f;
             m.z = 0f;
         }
+        if (transform.localScale == limit)
+        {
+        }
+        else { 
         if (isRightButtonDown)
         {
             m.y = -0.5f;
@@ -59,6 +66,7 @@ public class Character : MonoBehaviour
             m.x = 0f;
             m.z = 0f;
         }
+    }
     }
     void Movimento(Vector3 m)
     {
