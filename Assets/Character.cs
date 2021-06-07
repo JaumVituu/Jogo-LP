@@ -9,7 +9,10 @@ public class Character : MonoBehaviour
     public int score;
     Vector3 m;
     Vector3 limit;
-    
+    public Rigidbody tgl;
+    public float mass;
+    private bool jmpPressed = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +23,15 @@ public class Character : MonoBehaviour
         m.x = 0.0f;
         m.y = 0.0f;
         m.z = 0.0f;
+        jump = GetComponent<Rigidbody>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        jmpPressed = Input.getKey(KeyCode.Space);
         if (Input.GetKey(KeyCode.D))
         {
             m.z = 0.05f;
@@ -54,19 +60,20 @@ public class Character : MonoBehaviour
         if (transform.localScale == limit)
         {
         }
-        else { 
-        if (isRightButtonDown)
+        else
         {
-            m.y = -0.5f;
-            m.x = -0.5f;
-            m.z = -0.5f;
-            transform.localScale += m;
-            isRightButtonDown = false;
-            m.y = 0f;
-            m.x = 0f;
-            m.z = 0f;
+            if (isRightButtonDown)
+            {
+                m.y = -0.5f;
+                m.x = -0.5f;
+                m.z = -0.5f;
+                transform.localScale += m;
+                isRightButtonDown = false;
+                m.y = 0f;
+                m.x = 0f;
+                m.z = 0f;
+            }
         }
-    }
     }
     void Movimento(Vector3 m)
     {
@@ -81,7 +88,23 @@ public class Character : MonoBehaviour
             Debug.Log("Pegou " + score + " moeda");
 
         }
+        if (collider.tag == "ToggleGravity")
+        {
+            tgl.mass = -mass;
+        }
+    }
+    void FixedUpdate()
+    {
+        if (collider.tag == "ToggleGravity")
+        {
+            if (jmpPressed)
+            {
+                rb.velocity = new Vector3(0, 10, 0);
+            }
+        }
+
     }
 }
+
 
 

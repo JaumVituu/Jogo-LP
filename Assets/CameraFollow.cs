@@ -4,10 +4,35 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    bool isRightButtonDown;
+    bool isLeftButtonDown;
     public Transform target;
-
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
+
+    void Start()
+    {
+        isLeftButtonDown = false;
+        isRightButtonDown = false;
+    }
+
+    void Update()
+    {
+        isLeftButtonDown = Input.GetMouseButtonDown(0);
+        isRightButtonDown = Input.GetMouseButtonDown(1);
+        if (isLeftButtonDown)
+        {
+            offset.x += 1;
+            isLeftButtonDown = false;
+        }
+        if (offset.x >= 9)
+            if (isRightButtonDown)
+            {
+                offset.x -= 1;
+                isRightButtonDown = false;
+            }
+    }
+
 
     void LateUpdate()
     {

@@ -1,22 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class textMod : MonoBehaviour
 {
     string x;
-    public Text myText;
+    public UnityEngine.UI.Text myText;
+    public GameObject jogador;
+    public int pontos;
  
     // Start is called before the first frame update
     public void Start()
     {
-        myText.Text = "pontuação: ";
+        pontos = 0;
+        myText = GetComponent<UnityEngine.UI.Text>();
+        myText.text = "pontuação: " + pontos;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        pontos = jogador.GetComponent<Character>().score;
+        myText.text = "pontuação: " + pontos;
     }
 }
