@@ -9,14 +9,19 @@ public class Character : MonoBehaviour
     public int score;
     Vector3 m;
     Vector3 limit;
-    public Rigidbody tgl;
+    public Rigidbody jump;
     public float mass;
     private bool jmpPressed = false;
+    public int pulando;
+    public Vector3 posicao;
+    public int tglLever;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         var limit = new Vector3(1, 1, 1);
         isLeftButtonDown = false;
         isRightButtonDown = false;
@@ -24,14 +29,17 @@ public class Character : MonoBehaviour
         m.y = 0.0f;
         m.z = 0.0f;
         jump = GetComponent<Rigidbody>();
-
-
+        posicao.x = 0.0f;
+        posicao.y = 0.0f;
+        posicao.z = 0.0f;
+        jump.velocity = posicao;
+        pulando = 0;
+        tglLever = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        jmpPressed = Input.getKey(KeyCode.Space);
         if (Input.GetKey(KeyCode.D))
         {
             m.z = 0.05f;
@@ -74,6 +82,9 @@ public class Character : MonoBehaviour
                 m.z = 0f;
             }
         }
+        jmpPressed = Input.GetKey(KeyCode.Space);
+        
+
     }
     void Movimento(Vector3 m)
     {
@@ -88,23 +99,52 @@ public class Character : MonoBehaviour
             Debug.Log("Pegou " + score + " moeda");
 
         }
-        if (collider.tag == "ToggleGravity")
+        if (collider.tag == "Lever")
         {
-            tgl.mass = -mass;
+            tglLever = 1;
+        }
+        if (collider.tag == "ToggleJump")
+        {
+            pulando = 1;
         }
     }
+       
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.tag == "Lever")
+        {
+            tglLever = 0;
+        }
+        if (collider.tag == "ToggleJump")
+        {
+            pulando = 0;
+        }
+    }
+
+
     void FixedUpdate()
     {
-        if (collider.tag == "ToggleGravity")
+        
+        if (pulando == 1)
         {
+       
             if (jmpPressed)
             {
-                rb.velocity = new Vector3(0, 10, 0);
+                if (posicao.y == 0.0f)
+                {
+                    posicao.y = 10.0f;
+                    jump.velocity = posicao;
+                    Debug.Log("pulo");
+                }
+                if (posicao.y == 10.0f)
+                {
+                    posicao.y = 0.0f;
+                }
             }
         }
-
     }
 }
+
 
 
 

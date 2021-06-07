@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Coin
   - ToggleGravity
+  - ToggleJump
+  - Lever
   layers:
   - Default
   - TransparentFX
