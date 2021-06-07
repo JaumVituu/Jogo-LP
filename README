@@ -1,0 +1,10 @@
+DUPLA: João Vitor dos Santos, Eduardo Dias Fernandes.
+DESCRIÇÃO DO PROJETO:
+É um simples jogo de plataforma, onde o jogador atravessa um cenário coletando moedas. No final do caminho, ele deve coletar um cristal, para assim ganhar o jogo.
+As interações do jogador são as seguintes:
+A = esquerda
+D = Direita
+LeftBtnMouse = Aumenta a escala do personagem
+RightBtnMouse = Diminui a escala do personagem
+Espaço = Faz o jogador pular (somente na área em destaque)
+E = Usa a alavanca
