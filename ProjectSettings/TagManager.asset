@@ -8,6 +8,8 @@ TagManager:
   - ToggleGravity
   - ToggleJump
   - Lever
+  - Crystal
+  - WallHitbox
   layers:
   - Default
   - TransparentFX

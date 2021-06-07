@@ -30,6 +30,7 @@ public class lvlText : MonoBehaviour
                 Destroy(gameObject); 
             }
         }
+       
         else
         {
             lvText.text = "";

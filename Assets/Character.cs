@@ -15,13 +15,14 @@ public class Character : MonoBehaviour
     public int pulando;
     public Vector3 posicao;
     public int tglLever;
-    
+    public int crystalIs;
+    public int uWin;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         var limit = new Vector3(1, 1, 1);
         isLeftButtonDown = false;
         isRightButtonDown = false;
@@ -35,6 +36,8 @@ public class Character : MonoBehaviour
         jump.velocity = posicao;
         pulando = 0;
         tglLever = 0;
+        crystalIs = 0;
+        uWin = 0;
     }
 
     // Update is called once per frame
@@ -106,6 +109,15 @@ public class Character : MonoBehaviour
         if (collider.tag == "ToggleJump")
         {
             pulando = 1;
+        }
+        if (collider.tag == "WallHitbox")
+        {
+            crystalIs = 1;
+        }
+        if (collider.tag == "Crystal")
+        {
+            Debug.Log("Parabéns, você venceu!");
+            uWin = 1;
         }
     }
        

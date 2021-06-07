@@ -6,10 +6,12 @@ public class DestWall : MonoBehaviour
 {
     public int destroy;
     public GameObject txtCommand;
+    public bool isDestroyed;
 
     void Start()
     {
         destroy = 0;
+        isDestroyed = false;
     }
 
     
@@ -20,7 +22,8 @@ public class DestWall : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
-                Destroy(gameObject);
+                isDestroyed = true;
+                Destroy(gameObject);               
             }
         }
     }
