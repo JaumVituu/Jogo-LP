@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     bool isLeftButtonDown;
     public int score;
     Vector3 m;
-    Vector3 limit;
+    Vector3 limiteMin;
     public Rigidbody jump;
     public float mass;
     private bool jmpPressed = false;
@@ -17,6 +17,9 @@ public class Character : MonoBehaviour
     public int tglLever;
     public int crystalIs;
     public int uWin;
+    public bool particles;
+    public Vector3 escala;
+    Vector3 limiteMax;
 
 
 
@@ -38,11 +41,14 @@ public class Character : MonoBehaviour
         tglLever = 0;
         crystalIs = 0;
         uWin = 0;
+        limiteMin.y = 0.5f;
+        limiteMax.y = 10.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        escala = transform.localScale;
         if (Input.GetKey(KeyCode.D))
         {
             m.z = 0.05f;
@@ -57,18 +63,22 @@ public class Character : MonoBehaviour
         }
         isLeftButtonDown = Input.GetMouseButtonDown(0);
         isRightButtonDown = Input.GetMouseButtonDown(1);
-        if (isLeftButtonDown)
+        if (transform.localScale.y >= limiteMax.y) { }
+        else
         {
-            m.y = 0.5f;
-            m.x = 0.5f;
-            m.z = 0.5f;
-            transform.localScale += m;
-            isLeftButtonDown = false;
-            m.y = 0f;
-            m.x = 0f;
-            m.z = 0f;
+            if (isLeftButtonDown)
+            {
+                m.y = 0.5f;
+                m.x = 0.5f;
+                m.z = 0.5f;
+                transform.localScale += m;
+                isLeftButtonDown = false;
+                m.y = 0f;
+                m.x = 0f;
+                m.z = 0f;
+            }
         }
-        if (transform.localScale == limit)
+        if (transform.localScale.y <= limiteMin.y)
         {
         }
         else
@@ -114,10 +124,23 @@ public class Character : MonoBehaviour
         {
             crystalIs = 1;
         }
-        if (collider.tag == "Crystal")
+        if (collider.tag == "Crystal" || collider.tag == "Crystal2")
         {
-            Debug.Log("Parabéns, você venceu!");
-            uWin = 1;
+            uWin += 1;
+            Debug.Log("Parabéns, você venceu!");           
+        }
+        if (collider.tag == "ChadCoin")
+        {
+            score += 50;
+            Debug.Log("Yes, im the chad coin");
+            particles = true;
+
+        }
+
+        if (collider.tag == "Orange" || collider.tag == "Cyan")
+        {
+            score += 2;
+            Debug.Log("Destruiu inimigo!");
         }
     }
        

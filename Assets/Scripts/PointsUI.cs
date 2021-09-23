@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class textMod : MonoBehaviour
+public class PointsUI : MonoBehaviour
 {
     string x;
     public UnityEngine.UI.Text myText;

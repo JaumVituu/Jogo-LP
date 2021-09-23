@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class Camera : MonoBehaviour
 {
     bool isRightButtonDown;
     bool isLeftButtonDown;
@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
     {
         isLeftButtonDown = Input.GetMouseButtonDown(0);
         isRightButtonDown = Input.GetMouseButtonDown(1);
-        if (isLeftButtonDown)
+        if (isLeftButtonDown && offset.x <= 27)
         {
             offset.x += 1;
             isLeftButtonDown = false;

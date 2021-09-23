@@ -46,7 +46,6 @@ public class Crystal : MonoBehaviour
         if (isGone == 1)
         {
             Destroy(gameObject);
-            Application.Quit();
         }
     }
 }

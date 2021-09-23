@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class Void : MonoBehaviour
 {
     public bool gameOver;
     // Start is called before the first frame update
@@ -16,7 +17,8 @@ public class GameOver : MonoBehaviour
     {
         if (gameOver == true)
         {
-            Application.Quit();
+            SceneManager.LoadScene("GameOver");
+            gameOver = false;
         }
     }
     

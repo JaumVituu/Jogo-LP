@@ -10,6 +10,12 @@ TagManager:
   - Lever
   - Crystal
   - WallHitbox
+  - ChadCoin
+  - Wall
+  - Wall2
+  - Orange
+  - Cyan
+  - Crystal2
   layers:
   - Default
   - TransparentFX

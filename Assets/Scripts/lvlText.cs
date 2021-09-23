@@ -9,6 +9,7 @@ public class lvlText : MonoBehaviour
     public int onLever;
     public int ePressed;
     public GameObject lever;
+    public float colldown;
     
     void Start()
     {
@@ -21,13 +22,14 @@ public class lvlText : MonoBehaviour
     void Update()
     {
         onLever = player.GetComponent<Character>().tglLever;
-        if (onLever == 1)
+
+        if (onLever == 1 && ePressed == 0)
         {
             lvText.text = "Press E to use the Lever";
-            if(Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
                 ePressed = 1;
-                Destroy(gameObject); 
+                lvText.text = "";
             }
         }
        

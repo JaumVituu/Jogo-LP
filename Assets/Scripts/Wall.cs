@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestWall : MonoBehaviour
+public class Wall : MonoBehaviour
 {
     public int destroy;
     public GameObject txtCommand;
